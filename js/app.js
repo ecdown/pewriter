@@ -14,7 +14,7 @@ function addStyleString(str) {
     } else {
         node = testNode;
     }
-    node.innerHTML = str.replace('\r','').replace('\n','');
+    node.innerHTML = str.replace(/(<([^>]+)>)/ig,"").replace(/\s+/g, "");
     document.body.appendChild(node);
 }
  setInterval(function() { // fuction that is saving the innerHTML of the div
