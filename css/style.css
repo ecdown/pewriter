@@ -7,6 +7,7 @@ body {
   font-weight: 100;
   max-width: 50em;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 div:focus {
@@ -14,16 +15,23 @@ div:focus {
 }
 
 #heading {
-  font-size: 48px;
-  padding-top: 20px;
+  padding-left: 10px;
+  line-height: 1.5rem;
+  font-size: 14px;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.5rem;
+  width: 100%;
+  border-bottom: 2px solid black;
 }
 
-#content {
-  height: 10rem;
-  padding-top: 10px;
-  font-size: 24px;
+#output {
+  height: 90%;
 }
-#css-content {
+
+.editor {
   height: 10rem;
   padding-top: 10px;
   font-size: 24px;
@@ -37,4 +45,42 @@ div:focus {
   margin: 10px;
   padding-left: 5px;
   padding-right: 5px;    
+}
+
+#output, #editor-panel {
+  box-sizing: border-box;
+}
+
+#editor-panel {
+  z-index: 9;
+  overflow: auto;
+  position: absolute;
+  top: 1.5rem;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  border: 2px solid black;
+}
+
+#editor-panel span {
+  margin-left: 1rem;
+}
+
+#output {
+  position: absolute;
+  top: 1.5rem;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 60%;
+  padding-left: 5px;
+  padding-right: 5px;   
+}
+
+.frame-color{
+  background-color: #DDD;
+}
+
+.frame-color > div {
+  background-color: #FFF;
 }
