@@ -19,6 +19,10 @@ function writeToLocalConsole(type) {
     }
 }
 
+function clearConsole() {
+    document.getElementById('console').innerHTML = '';
+}
+
 // define a new console
 var console=(function(oldCons){
     return {

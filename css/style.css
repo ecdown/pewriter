@@ -30,9 +30,7 @@ div:focus {
 #output {
   height: 90%;
 }
-/*#console {
-    height: 
-}*/
+
 .editor {
   height: 10rem;
   padding-top: 10px;
@@ -84,6 +82,10 @@ div.scrollbars {
   padding-right: 5px;   
 }
 
+#clear-console {
+  float: right;
+  margin-right: 10px;
+}
 .frame-color{
   background-color: #DDD;
 }
