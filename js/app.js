@@ -5,7 +5,6 @@ function seedLocalStorage() {
     document.getElementById('js-content').innerHTML = localStorage.js_content || 'console.log("test");'; // default text
 }
 
-
 function writeToLocalConsole(type) {
     var logger = document.getElementById('console');
     for (var i = 1; i < arguments.length; i++) {
@@ -80,6 +79,5 @@ function init() {
     cssMonitor.watch();
     jsMonitor.watch();
 } 
-
 
  window.onload = init;
