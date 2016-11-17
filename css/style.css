@@ -31,12 +31,17 @@ div:focus {
   height: 90%;
 }
 #console {
-    height: 90%;
+    height: 
 }
 .editor {
   height: 10rem;
   padding-top: 10px;
   font-size: 24px;
+    overflow:auto;
+}
+div.scrollbars {
+    max-height: 100px;
+    overflow: auto;
 }
 
 .onepx-solid-black-border {
