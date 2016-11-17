@@ -27,7 +27,8 @@ function addStyleString(str) {
     } else {
         node = testNode;
     }
-    node.innerHTML = str.replace(/(<([^>]+)>)/ig, "").replace(/\s+/g, " ");
+
+    node.innerHTML = str.replace(/(<([^>]+)>)/ig,"").replace(/\s+/g, "");
     document.body.appendChild(node);
 }
 
