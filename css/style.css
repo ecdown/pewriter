@@ -30,7 +30,9 @@ div:focus {
 #output {
   height: 90%;
 }
-
+#console {
+    height: 90%;
+}
 .editor {
   height: 10rem;
   padding-top: 10px;

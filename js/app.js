@@ -5,6 +5,20 @@ function seedLocalStorage() {
     document.getElementById('js-content').innerHTML = localStorage.js_content || 'console.log("test");'; // default text
 }
 
+(function () {
+    var old = console.log;
+    var logger = document.getElementById('console');
+    console.log = function () {
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += arguments[i] + '<br />';
+        }
+      }
+    }
+})();
+
 function init() {
     var titleMonitor = editorMonitor();
     var htmlMonitor = editorMonitor();
