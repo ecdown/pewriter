@@ -3,6 +3,19 @@ document.getElementById('content').innerHTML = localStorage.text || 'This text i
 document.getElementById('css-content').innerHTML = localStorage.css_content || 'h1 { color: blue;}'; // default text
 document.getElementById('js-content').innerHTML = localStorage.js_content || 'console.log("test");'; // default text
 
+(function () {
+    var old = console.log;
+    var logger = document.getElementById('console');
+    console.log = function () {
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += arguments[i] + '<br />';
+        }
+      }
+    }
+})();
 
 function addStyleString(str) {
     var testNode = document.getElementById('styleentry');
