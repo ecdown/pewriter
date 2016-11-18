@@ -1,8 +1,21 @@
 document.getElementById('heading').innerHTML = localStorage.title || 'Just Write'; // default text
-document.getElementById('content').innerHTML = localStorage.text || 'This text is automatically saved every second :) '; // default text
+document.getElementById('content').value = localStorage.text || 'This text is automatically saved every second :) '; // default text
 document.getElementById('css-content').innerHTML = localStorage.css_content || 'h1 { color: blue;}'; // default text
 document.getElementById('js-content').innerHTML = localStorage.js_content || 'console.log("test");'; // default text
 
+var htmlEditor = CodeMirror.fromTextArea(document.getElementById("content"), {
+            lineNumbers: true,
+            mode:  "htmlmixed"
+        });
+
+var cssEditor = CodeMirror.fromTextArea(document.getElementById("css-content"), {
+            lineNumbers: true,
+            mode:  "htmlmixed"
+        });
+var jsEditor = CodeMirror.fromTextArea(document.getElementById("js-content"), {
+            lineNumbers: true,
+            mode:  "htmlmixed"
+        });
 
 function addStyleString(str) {
     var testNode = document.getElementById('styleentry');
@@ -37,18 +50,17 @@ function addScriptString(script) {
     node.text = script;
  document.body.appendChild(node);   
 }
- setInterval(function() { // fuction that is saving the innerHTML of the div
-      localStorage.title = document.getElementById('heading').innerHTML; // heading div
-      localStorage.text = document.getElementById('content').innerHTML; // content div
-      localStorage.css_content = document.getElementById('css-content').innerHTML; // content div
-      localStorage.js_content = document.getElementById('js-content').innerHTML;
-     
-      document.getElementById('output').innerHTML = document.getElementById('content').textContent;
-     addStyleString(document.getElementById('css-content').textContent);
-     addScriptString(document.getElementById('js-content').textContent);
-     
-     
-     ;
- }, 1000);
 
-addStyleString(document.getElementById('css-content').innerHTML);
+setInterval(function() { // fuction that is saving the innerHTML of the div
+    localStorage.title = document.getElementById('heading').innerHTML; // heading div
+    localStorage.text = htmlEditor.getValue();
+    localStorage.css_content = cssEditor.getValue(); 
+    localStorage.js_content = jsEditor.getValue(); 
+     
+    document.getElementById('output').innerHTML = htmlEditor.getValue();
+    addStyleString(cssEditor.getValue());
+    addScriptString(jsEditor.getValue());
+     
+}, 1000);
+
+addStyleString(cssEditor.getValue());
