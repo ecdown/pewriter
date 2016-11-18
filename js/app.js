@@ -17,6 +17,60 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("js-content"), {
             mode:  "htmlmixed"
         });
 
+function writeToLocalConsole(type) {
+    var logger = document.getElementById('console');
+    for (var i = 1; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += type +":" + (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += type +":" +  arguments[i] + '<br />';
+        }
+    }
+}
+
+// define a new console
+var console=(function(oldCons){
+    return {
+        log: function(text){
+            oldCons.log(text);
+            // Your code
+            writeToLocalConsole('log',text);
+        },
+        info: function (text) {
+            oldCons.info(text);
+            // Your code
+            writeToLocalConsole('info',text);
+        },
+        warn: function (text) {
+            oldCons.warn(text);
+            // Your code
+            writeToLocalConsole('warn',text);
+        },
+        error: function (text) {
+            oldCons.error(text);
+            // Your code
+            writeToLocalConsole('error',text);
+        }
+    };
+}(window.console));
+
+//Then redefine the old console
+/* New implementation above.  Will remove next revision
+window.console = console;
+(function () {
+    var old = console.log;
+    var logger = document.getElementById('console');
+    console.log = function () {
+      for (var i = 0; i < arguments.length; i++) {
+        if (typeof arguments[i] == 'object') {
+            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + '<br />';
+        } else {
+            logger.innerHTML += arguments[i] + '<br />';
+        }
+      }
+    }
+})();
+*/
 function addStyleString(str) {
     var testNode = document.getElementById('styleentry');
     var node;
